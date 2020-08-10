@@ -55,12 +55,12 @@ function validateContext(): void {
   const context = github.context;
   if (context.eventName !== "workflow_run") {
     throw new Error(
-      `This action only supports workflow_run event. (eventName=${context.eventName}`
+      `This action only supports workflow_run event. (eventName=${context.eventName})`
     );
   }
-  if (context.action !== "completed") {
+  if (context.payload.action !== "completed") {
     throw new Error(
-      `This action only supports completed action. (action=${context.action}`
+      `This action only supports completed action. (action=${context.action})`
     );
   }
 }
