@@ -12,7 +12,7 @@
     "prerelease": "npm-run-all -p lint -s build",
     "clean": "rimraf dist lib",
     "compile": "tsc",
-    "pack": "ncc build",
+    "pack": "npm ci && ncc build",
     "fix:lint": "npm run lint:eslint -- --fix",
     "fix:md": "prettier --write README.md",
     "fix": "run-p fix:*",
