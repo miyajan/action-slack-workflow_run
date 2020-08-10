@@ -1,0 +1,18 @@
+name: lint
+
+on: [push]
+
+jobs:
+  build:
+    name: Node.js ubuntu-latest 12.x
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2.1.1
+        with:
+          node-version: 12.x
+      - name: Lint
+        run: |
+          npm ci
+          npm run lint

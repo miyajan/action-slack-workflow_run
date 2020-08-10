@@ -1,0 +1,49 @@
+{
+  "name": "slack-workflow_run",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "private": true,
+  "description": "GitHub Action to send the status of the workflow which triggered workflow_run event to Slack.",
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "npm-run-all -l -s clean compile pack",
+    "lint": "run-p -l lint:*",
+    "prerelease": "npm-run-all -p lint -s build",
+    "clean": "rimraf dist lib",
+    "compile": "tsc",
+    "pack": "ncc build",
+    "fix:lint": "npm run lint:eslint -- --fix",
+    "fix:md": "prettier --write README.md",
+    "fix": "run-p fix:*",
+    "lint:eslint": "eslint 'src/**/*.ts'",
+    "lint:md": "prettier --check README.md",
+    "lint:ts": "tsc --noEmit",
+    "start": "npm run compile -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miyajan/action-slack-workflow_run.git"
+  },
+  "keywords": [
+    "actions",
+    "slack"
+  ],
+  "author": "miyajan",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0",
+    "@slack/webhook": "^5.0.3"
+  },
+  "devDependencies": {
+    "@cybozu/eslint-config": "^11.0.0",
+    "@types/node": "^14.0.27",
+    "@zeit/ncc": "^0.22.3",
+    "eslint": "^7.6.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.7"
+  }
+}

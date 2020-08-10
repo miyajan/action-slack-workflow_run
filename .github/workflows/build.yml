@@ -1,0 +1,25 @@
+name: build
+
+on: [push]
+
+jobs:
+  build:
+    name: Node.js ubuntu-latest 12.x
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2.1.1
+        with:
+          node-version: 12.x
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+      - name: Verify no unstaged changes
+        run: |
+          if [[ "$(git status --porcelain)" != "" ]]; then
+            git status
+            echo "::error::Unstaged changes detected. Run 'npm run prerelease' before commit"
+            exit 1
+          fi
