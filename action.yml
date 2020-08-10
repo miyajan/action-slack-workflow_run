@@ -1,0 +1,13 @@
+name: 'Slack workflow_run'
+description: 'This action sends the status of the workflow which triggered workflow_run event to Slack.'
+author: 'miyajan'
+inputs:
+  slack-webhook-url:
+    description: 'The Slack Incoming Webhook URL.'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: bell
+  color: blue

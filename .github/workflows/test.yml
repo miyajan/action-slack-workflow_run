@@ -1,0 +1,15 @@
+name: test
+
+on:
+  workflow_run:
+    workflows: ["build", "lint"]
+    types:
+      - completed
+
+jobs:
+  slack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: miyajan/action-slack-workflow_run
+        with:
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
