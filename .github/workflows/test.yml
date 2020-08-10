@@ -10,6 +10,6 @@ jobs:
   slack:
     runs-on: ubuntu-latest
     steps:
-      - uses: miyajan/action-slack-workflow_run
+      - uses: ./
         with:
           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
