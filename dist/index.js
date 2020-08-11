@@ -1482,11 +1482,15 @@ function run() {
             const url = core.getInput("slack-webhook-url", { required: true });
             const webhook = new webhook_1.IncomingWebhook(url);
             const fallback = buildFallback(workflowRun);
-            const authorName = "github-actions";
-            const authorIcon = "https://avatars2.githubusercontent.com/in/15368?v=4";
+            const iconURL = "https://avatars2.githubusercontent.com/in/15368";
+            const username = "github-actions";
+            const authorName = github.context.actor;
+            const authorIcon = `https://github.com/${github.context.actor}.png`;
             const color = buildColor(workflowRun);
             const fields = buildFields(workflowRun);
             yield webhook.send({
+                icon_url: iconURL,
+                username,
                 attachments: [
                     {
                         fallback,
