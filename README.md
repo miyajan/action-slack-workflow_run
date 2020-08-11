@@ -29,7 +29,7 @@ jobs:
     if: github.event.workflow_run.conclusion == 'failure'
     runs-on: ubuntu-latest
     steps:
-      - uses: miyajan/action-slack-workflow_run
+      - uses: miyajan/action-slack-workflow_run@v1.0.0
         with:
           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
 ```
